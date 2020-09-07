@@ -123,13 +123,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |  TAB   |   X  |   V  |   L  |   C  |   W  | ALTS |           | ALT  |   K  |   H  |   G  |   F  |   Q  |   ß    |
    * |--------+------+------+------+------+------| TAB  |           | TAB  |------+------+------+------+------+--------|
    * |  NEO3  |   U  |   I  |   A  |   E  |   O  |------|           |------|   S  |   N  |   R  |   T  |   D  |   Y    |
-   * |--------+------+------+------+------+------| ---- |           | ---- |------+------+------+------+------+--------|
+   * |--------+------+------+------+------+------| MB1  |           | MB2  |------+------+------+------+------+--------|
    * | LSHIFT |   Ü  |   Ö  |   Ä  |   P  |   Z  |      |           |      |   B  |   M  |  ,/– |  ./• |   J  | RSHIFT |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   | ---- | ---- | ---- | ---- | NEO4 |                                       | NEO4 | ---- | ---- | ---- | ---- |
+   *   | MWLF | MWDN | MWUP | MWRI | NEO4 |                                       | NEO4 | MLEF | MDOW | MUP  | MRIG |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
-   *                                        | ---- | ---- |       | ---- | FKEY |
+   *                                        | APP  | ---- |       | ---- | FKEY |
    *                                 ,------|------|------|       |------+------+------.
    *                                 |      |      | AC   |       | AC   |      |      |
    *                                 | LGUI | LALT |------|       |------| ALTG |Space |
@@ -141,11 +141,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO /* NOOP */, NEO2_1,                   NEO2_2,                   NEO2_3,                   NEO2_4,           NEO2_5,           KC_NO,
     KC_TAB,           DE_X,                     DE_V,                     DE_L,                     DE_C,             DE_W,             YELDIR_CTLSTAB,
     NEO2_LMOD3,       DE_U,                     DE_I,                     DE_A,                     DE_E,             DE_O,             /* --- */
-    KC_LSHIFT,        DE_UDIA,                  DE_ODIA,                  DE_ADIA,                  DE_P,             DE_Z,             KC_NO,
-    KC_NO /* NOOP */, KC_NO /* NOOP */,         KC_NO,                    KC_NO,                    NEO2_LMOD4,       /* --- */         /* --- */
+    KC_LSHIFT,        DE_UDIA,                  DE_ODIA,                  DE_ADIA,                  DE_P,             DE_Z,             KC_MS_BTN1,
+    KC_MS_WH_LEFT,    KC_MS_WH_DOWN,            KC_MS_WH_UP,              KC_MS_WH_RIGHT,           NEO2_LMOD4,       /* --- */         /* --- */
 
     // left hand side - thumb cluster
-    /* --- */         KC_NO,            KC_NO,
+    /* --- */         KC_APPLICATION,   KC_NO,
     /* KC_BSPACE */   /* KC_DELETE */   YELDIR_AC,
     KC_LGUI,          KC_LALT,          KC_LCTRL,
 
@@ -153,8 +153,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TO(DE_NORMAL),    NEO2_6,           NEO2_7,           NEO2_8,           NEO2_9,           NEO2_0,           NEO2_MINUS,
     YELDIR_CTLTAB,    DE_K,             DE_H,             DE_G,             DE_F,             DE_Q,             NEO2_SHARP_S,
     /* --- */         DE_S,             DE_N,             DE_R,             DE_T,             DE_D,             DE_Y,
-    KC_NO,            DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSHIFT,
-    /* --- */         /* --- */         NEO2_RMOD4,       KC_NO,            KC_NO,            KC_NO,            KC_NO,
+    KC_MS_BTN2,       DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSHIFT,
+    /* --- */         /* --- */         NEO2_RMOD4,       KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,
 
     // right hand side - thumb cluster
     KC_NO,            MO(FKEYS),        /* --- */
@@ -353,36 +353,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* DE_NORMAL: DE QWERTZ
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
-   * |   =    |   1  |   2  |   3  |   4  |   5  | ESC  |           | NEO_1|   6  |   7  |   8  |   9  |   0  |    ß   |
+   * | ESCAPE |   1  |   2  |   3  |   4  |   5  | ESC  |           | NEO_1|   6  |   7  |   8  |   9  |   0  |    ß   |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |   \    |   Q  |   W  |   E  |   R  |   T  | ---- |           | ---- |   Z  |   U  |   I  |   O  |   P  |    Ü   |
+   * |  TAB   |   Q  |   W  |   E  |   R  |   T  | ---- |           | ---- |   Z  |   U  |   I  |   O  |   P  |    Ü   |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |  TAB   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   Ö  |    Ä   |
+   * | LSHIFT |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   Ö  |    Ä   |
    * |--------+------+------+------+------+------| ---- |           | ---- |------+------+------+------+------+--------|
    * | LSHIFT |   Y  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   -  | RSHIFT |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   | LGUI |   `  | ---- | ---- | FKEYS|                                       | Left | Down |  Up  | Right| RGUI |
+   *   | LCTL | LGUI | LALT | ---- | FKEYS|                                       | Left | Down |  Up  | Right| RGUI |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
-   *                                        | LCTRL| LALT |       | RALT | RCTRL|
+   *                                        | ---- | ---- |       | RALT | RCTRL|
    *                                 ,------|------|------|       |------+------+------.
    *                                 |      |      | HOME |       | PGUP |      |      |
-   *                                 | BKSP | DEL  |------|       |------| ENTR | SPCE |
+   *                                 | SPCE | BSPC |------|       |------| ENTR | SPCE |
    *                                 |      |      | END  |       | PGDN |      |      |
    *                                 `--------------------'       `--------------------'
    */
   [DE_NORMAL] = LAYOUT_ergodox(
     // left hand side - main
-    KC_EQUAL,         DE_1,         DE_2,       DE_3,       DE_4,       DE_5,       KC_ESCAPE,
-    KC_BSLASH,        DE_Q,         DE_W,       DE_E,       DE_R,       DE_T,       KC_NO /* NOOP */,
-    KC_TAB,           DE_A,         DE_S,       DE_D,       DE_F,       DE_G,       /* --- */
+    KC_ESCAPE,        DE_1,         DE_2,       DE_3,       DE_4,       DE_5,       KC_ESCAPE,
+    KC_TAB,           DE_Q,         DE_W,       DE_E,       DE_R,       DE_T,       KC_NO /* NOOP */,
+    KC_LSHIFT,        DE_A,         DE_S,       DE_D,       DE_F,       DE_G,       /* --- */
     KC_LSHIFT,        DE_Y,         DE_X,       DE_C,       DE_V,       DE_B,       KC_NO /* NOOP */,
-    KC_LGUI,          KC_NO,        KC_NO,      KC_NO,      MO(FKEYS),  /* --- */   /* --- */
+    KC_LCTL,          KC_LGUI,      KC_LALT,    KC_NO,      MO(FKEYS),  /* --- */   /* --- */
 
     // left hand side - thumb cluster
-    /* --- */         KC_LCTRL,     KC_LALT,
+    /* --- */         KC_NO,        KC_NO,
     /* --- */         /* --- */     KC_HOME,
-    KC_BSPACE,        KC_DELETE,    KC_END,
+    KC_SPACE,         KC_BSPACE,    KC_END,
 
     // right hand side - main
     TO(NEO_1),        DE_6,         DE_7,       DE_8,       DE_9,       DE_0,       DE_SS,
