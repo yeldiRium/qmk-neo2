@@ -703,11 +703,14 @@ void matrix_scan_user(void) {
     ergodox_right_led_3_off();
     switch (layer) {
       // TODO: Make this relevant to the ErgoDox EZ.
-        case 1:
+        case NEO_3:
             ergodox_right_led_1_on();
             break;
-        case 2:
+        case NEO_4:
             ergodox_right_led_2_on();
+            break;
+        case DE_NORMAL:
+            ergodox_right_led_3_on();
             break;
         default:
             // none
