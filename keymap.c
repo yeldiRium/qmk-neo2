@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *   | MWLF | MWDN | MWUP | MWRI | NEO4 |                                       | NEO4 | MLEF | MDOW | MUP  | MRIG |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
-   *                                        | APP  | ---- |       | ---- | FKEY |
+   *                                        | APP  |ctrl+s|       | ---- | FKEY |
    *                                 ,------|------|------|       |------+------+------.
    *                                 |      |      | AC   |       | AC   |      |      |
    *                                 | LGUI | LALT |------|       |------| ALTG |Space |
@@ -145,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_MS_WH_LEFT,    KC_MS_WH_DOWN,            KC_MS_WH_UP,              KC_MS_WH_RIGHT,           NEO2_LMOD4,       /* --- */         /* --- */
 
     // left hand side - thumb cluster
-    /* --- */         KC_APPLICATION,   KC_NO,
+    /* --- */         KC_APPLICATION,   LCTL(DE_S),
     /* KC_BSPACE */   /* KC_DELETE */   YELDIR_AC,
     KC_LGUI,          KC_LALT,          KC_LCTRL,
 
