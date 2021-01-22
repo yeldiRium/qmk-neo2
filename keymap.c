@@ -244,7 +244,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,            _______,                  _______,
 
     // right hand side - main
-    _______,            NEO2_L3_CURRENCY_SIGN,     KC_TAB,                   KC_SLASH,          DE_ASTR,         DE_MINS,              KC_NO /* NOOP */,
+    _______,            NEO2_L3_CURRENCY_SIGN,     KC_TAB,                   NEO2_L3_SLASH,     DE_ASTR,         DE_MINS,              KC_NO /* NOOP */,
     _______,            NEO2_L3_INV_EXCLAMATION,   KC_7,                     KC_8,              KC_9,            DE_PLUS,              NEO2_L3_EM_DASH,
     /* --- */           NEO2_L3_INV_QUESTIONMARK,  KC_4,                     KC_5,              KC_6,            DE_COMM,              KC_DOT,
     _______,            NEO2_L3_COLON,             KC_1,                     KC_2,              KC_3,            NEO2_L3_SEMICOLON,    _______,
