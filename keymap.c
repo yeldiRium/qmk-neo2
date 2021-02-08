@@ -152,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // right hand side - main
     TO(DE_NORMAL),    NEO2_6,           NEO2_7,           NEO2_8,           NEO2_9,           NEO2_0,           NEO2_MINUS,
     YELDIR_CTLTAB,    DE_K,             DE_H,             DE_G,             DE_F,             DE_Q,             NEO2_SHARP_S,
-    /* --- */         DE_S,             DE_N,             DE_R,             DE_T,             DE_D,             DE_Y,
+    /* --- */         DE_S,             DE_N,             DE_R,             DE_T,             DE_D,             NEO2_RMOD3,
     KC_MS_BTN2,       DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSHIFT,
     /* --- */         /* --- */         NEO2_RMOD4,       KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,
 
@@ -199,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // right hand side - main
     _______,            NEO2_L3_CENT,          NEO2_L3_YEN,           NEO2_L3_SBQUO,         NEO2_L3_LEFT_SINGLE_QUOTE,  NEO2_L3_RIGHT_SINGLE_QUOTE,   KC_NO,
     _______,            NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            NEO2_L3_SMALL_LONG_S,
-    /* --- */           NEO2_L3_QUESTIONMARK,  NEO2_L3_LPARENTHESES,  NEO2_L3_RPARENTHESES,  NEO2_L3_HYPHEN_MINUS,       NEO2_L3_COLON,                DE_AT,
+    /* --- */           NEO2_L3_QUESTIONMARK,  NEO2_L3_LPARENTHESES,  NEO2_L3_RPARENTHESES,  NEO2_L3_HYPHEN_MINUS,       NEO2_L3_COLON,                NEO2_RMOD3,
     _______,            NEO2_L3_PLUS,          NEO2_L3_PERCENT,       NEO2_L3_DOUBLE_QUOTE,  NEO2_L3_SINGLE_QUOTE,       NEO2_L3_SEMICOLON,            _______,
     /* --- */           /* --- */              _______,               _______,               _______,                    _______,                      _______,
 
@@ -661,11 +661,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (timer_elapsed(neo3_timer) <= 150) {
           if (neo3_state > 0) {
             // We are still in NEO_3 layer, send keycode and modifiers for @
-            tap_with_modifiers(KC_2, MODS_SHIFT);
+            SEND_STRING(SS_RALT("q"));
             return false;
           } else {
             // Do the normal key processing, send y
-            tap_with_modifiers(KC_Y, MODS_NONE);
+            SEND_STRING("z");
             return false;
           }
         }
