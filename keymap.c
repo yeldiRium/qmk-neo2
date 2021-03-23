@@ -5,8 +5,6 @@
 #include "version.h"
 #include "layers.h"
 
-// Timer to detect tap/hold on NEO_RMOD3 key
-static uint16_t neo3_timer;
 // State bitmap to track which key(s) enabled NEO_3 layer
 static uint8_t neo3_state = 0;
 // State bitmap to track key combo for CAPSLOCK
@@ -79,7 +77,7 @@ enum custom_keycodes {
 #define NEO2_L3_GREATERTHAN          DE_RABK                     // >
 #define NEO2_L3_EQUAL                DE_EQL                      // =
 #define NEO2_L3_AMPERSAND            DE_AMPR                     // &
-#define NEO2_L3_SMALL_LONG_S         KC_NO                       // ſ
+#define NEO2_L3_SMALL_LONG_S         RALT(DE_S)                  // ſ
 #define NEO2_L3_BSLASH               DE_BSLS                     // (backslash)
 #define NEO2_L3_SLASH                DE_SLSH                     // /
 #define NEO2_L3_CLBRACKET            DE_LCBR                     // {
@@ -151,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // right hand side - main
     TO(DE_NORMAL),    NEO2_6,           NEO2_7,           NEO2_8,           NEO2_9,           NEO2_0,           NEO2_MINUS,
-    YELDIR_CTLTAB,    DE_K,             DE_H,             DE_G,             DE_F,             DE_Q,             NEO2_RMOD3,
+    YELDIR_CTLTAB,    DE_K,             DE_H,             DE_G,             DE_F,             DE_Q,             NEO2_SHARP_S,
     /* --- */         DE_S,             DE_N,             DE_R,             DE_T,             DE_D,             DE_Y,
     KC_MS_BTN2,       DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSHIFT,
     /* --- */         /* --- */         NEO2_RMOD4,       KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,
@@ -198,7 +196,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // right hand side - main
     _______,            NEO2_L3_CENT,          NEO2_L3_YEN,           NEO2_L3_SBQUO,         NEO2_L3_LEFT_SINGLE_QUOTE,  NEO2_L3_RIGHT_SINGLE_QUOTE,   KC_NO,
-    _______,            NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            NEO2_RMOD3,
+    _______,            NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            NEO2_L3_SMALL_LONG_S,
     /* --- */           NEO2_L3_QUESTIONMARK,  NEO2_L3_LPARENTHESES,  NEO2_L3_RPARENTHESES,  NEO2_L3_HYPHEN_MINUS,       NEO2_L3_COLON,                DE_AT,
     _______,            NEO2_L3_PLUS,          NEO2_L3_PERCENT,       NEO2_L3_DOUBLE_QUOTE,  NEO2_L3_SINGLE_QUOTE,       NEO2_L3_SEMICOLON,            _______,
     /* --- */           /* --- */              _______,               _______,               _______,                    _______,                      _______,
@@ -532,7 +530,7 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_RALT(","));
         break;
       case NEO2_SHARP_S:
-        // capital german sharp s
+        // ẞ
         SEND_STRING(SS_LSFT(SS_RALT("s")));
         break;
       default:
@@ -584,7 +582,7 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_TAP(X_DOT));
         break;
       case NEO2_SHARP_S:
-        // german sharp s
+        // ß
         SEND_STRING(SS_TAP(X_MINS));
         break;
       case NEO2_L3_CIRCUMFLEX:
@@ -609,9 +607,6 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
 
 // Runs for each key down or up event.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  uint8_t active_modifiers = get_mods();
-  uint8_t shifted = active_modifiers & MODS_SHIFT;
-
   switch(keycode) {
     case KC_LSHIFT:
       if (record->event.pressed) {
@@ -646,37 +641,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_off(NEO_3);
         }
         neo3_state &= ~(1 << 1);
-      }
-      break;
-    case NEO2_RMOD3:
-      if (record->event.pressed) {
-        neo3_timer = timer_read();
-        neo3_state |= (1 << 2);
-        layer_on(NEO_3);
-      } else {
-        // Turn off NEO_3 layer unless it's enabled through NEO2_LMOD3 as well.
-        if ((neo3_state & ~(1 << 2)) == 0) {
-          layer_off(NEO_3);
-        }
-        neo3_state &= ~(1 << 2);
-
-        // Was the NEO2_RMOD3 key TAPPED?
-        if (timer_elapsed(neo3_timer) <= 150) {
-          if (neo3_state > 0) {
-            // We are still in NEO_3 layer, send keycode and modifiers for ſ
-            SEND_STRING(SS_RALT("s"));
-            return false;
-          } else {
-            if (!shifted) {
-              // send ß
-              SEND_STRING(SS_TAP(X_MINS));
-            } else {
-              // send ẞ
-              SEND_STRING(SS_LSFT(SS_RALT("s")));
-            }
-            return false;
-          }
-        }
       }
       break;
   }
