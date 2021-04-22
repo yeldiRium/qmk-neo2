@@ -364,9 +364,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                                        ,-------------.       ,-------------.
    *                                        | ---- | ---- |       | RALT | RCTRL|
    *                                 ,------|------|------|       |------+------+------.
-   *                                 |      |      | HOME |       | PGUP |      |      |
-   *                                 | SPCE | BSPC |------|       |------| ENTR | SPCE |
-   *                                 |      |      | END  |       | PGDN |      |      |
+   *                                 |      |      |      |       |      |      |      |
+   *                                 | SPCE | LALT |------|       |------| ENTR | SPCE |
+   *                                 |      |      | LCTL |       | BSPC |      |      |
    *                                 `--------------------'       `--------------------'
    */
   [DE_NORMAL] = LAYOUT_ergodox(
@@ -379,8 +379,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // left hand side - thumb cluster
     /* --- */         KC_NO,        KC_NO,
-    /* --- */         /* --- */     KC_HOME,
-    KC_SPACE,         KC_BSPACE,    KC_END,
+    /* --- */         /* --- */     KC_NO,
+    KC_SPACE,         KC_LALT,      KC_LCTL,
 
     // right hand side - main
     TO(NEO_1),        DE_6,         DE_7,       DE_8,       DE_9,       DE_0,       DE_SS,
@@ -391,8 +391,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // right hand side - thumb cluster
     KC_RALT,          KC_RCTRL,     /* --- */
-    KC_PGUP,          /* --- */     /* --- */
-    KC_PGDOWN,        KC_ENTER,     KC_SPACE
+    KC_NO,            /* --- */     /* --- */
+    KC_BSPACE,        KC_ENTER,     KC_SPACE
   ),
 
   /* FKEYS: Function keys
