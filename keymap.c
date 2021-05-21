@@ -121,17 +121,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |  TAB   |   X  |   V  |   L  |   C  |   W  | ALTS |           | ALT  |   K  |   H  |   G  |   F  |   Q  |   ß    |
    * |--------+------+------+------+------+------| TAB  |           | TAB  |------+------+------+------+------+--------|
    * |  NEO3  |   U  |   I  |   A  |   E  |   O  |------|           |------|   S  |   N  |   R  |   T  |   D  |   Y    |
-   * |--------+------+------+------+------+------| MB1  |           | MB2  |------+------+------+------+------+--------|
+   * |--------+------+------+------+------+------| MB1  |           |LCTRL |------+------+------+------+------+--------|
    * | LSHIFT |   Ü  |   Ö  |   Ä  |   P  |   Z  |      |           |      |   B  |   M  |  ,/– |  ./• |   J  | RSHIFT |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   | MWLF | MWDN | MWUP | MWRI | NEO4 |                                       | NEO4 | MLEF | MDOW | MUP  | MRIG |
+   *   | LCTRL|      |      |      |      |                                       | NEO4 | MLEF | MDOW | MUP  | MRIG |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
-   *                                        | APP  |ctrl+s|       | ---- | FKEY |
+   *                                        |      |ctrl+s|       | ---- | FKEY |
    *                                 ,------|------|------|       |------+------+------.
-   *                                 |      |      | AC   |       | AC   |      |      |
-   *                                 | LGUI | LALT |------|       |------| ALTG |Space |
-   *                                 |      |      | LCTRL|       | RCTRL|      |      |
+   *                                 |      |      |      |       | AC   |      |      |
+   *                                 |      |      |------|       |------| LALT |Space |
+   *                                 |      |      |      |       | LGUI |      |      |
    *                                 `--------------------'       `--------------------'
    */
   [NEO_1] = LAYOUT_ergodox(
@@ -140,24 +140,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,           DE_X,                     DE_V,                     DE_L,                     DE_C,             DE_W,             YELDIR_CTLSTAB,
     NEO2_LMOD3,       DE_U,                     DE_I,                     DE_A,                     DE_E,             DE_O,             /* --- */
     KC_LSHIFT,        DE_UDIA,                  DE_ODIA,                  DE_ADIA,                  DE_P,             DE_Z,             KC_MS_BTN1,
-    KC_MS_WH_LEFT,    KC_MS_WH_DOWN,            KC_MS_WH_UP,              KC_MS_WH_RIGHT,           NEO2_LMOD4,       /* --- */         /* --- */
+    KC_LCTRL,         KC_NO,                    KC_NO,                    KC_NO,                    KC_NO,       /* --- */         /* --- */
 
     // left hand side - thumb cluster
-    /* --- */         KC_APPLICATION,   LCTL(DE_S),
-    /* KC_BSPACE */   /* KC_DELETE */   YELDIR_AC,
-    KC_LGUI,          KC_LALT,          KC_LCTRL,
+    /* --- */         KC_NO,            LCTL(DE_S),
+    /* KC_BSPACE */   /* KC_DELETE */   KC_NO,
+    KC_NO,            KC_NO,            KC_NO,
 
     // right hand side - main
     TO(DE_NORMAL),    NEO2_6,           NEO2_7,           NEO2_8,           NEO2_9,           NEO2_0,           NEO2_MINUS,
     YELDIR_CTLTAB,    DE_K,             DE_H,             DE_G,             DE_F,             DE_Q,             NEO2_SHARP_S,
     /* --- */         DE_S,             DE_N,             DE_R,             DE_T,             DE_D,             DE_Y,
-    KC_MS_BTN2,       DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSHIFT,
+    KC_LCTRL,         DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSHIFT,
     /* --- */         /* --- */         NEO2_RMOD4,       KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,
 
     // right hand side - thumb cluster
     KC_NO,            MO(FKEYS),        /* --- */
     YELDIR_AC,        /* --- */         /* --- */
-    KC_RCTRL,         KC_RALT,          KC_SPACE
+    KC_LGUI,          KC_LALT,          KC_SPACE
   ),
 
   /* NEO_3: Symbol layer
@@ -441,9 +441,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,                /* --- */           /* --- */
     _______,                _______,            _______
   ),
-};
+} ;
 
-// Send a key tap with a optional set of modifiers.
+// send a key tap with a optional set of modifiers.
 void tap_with_modifiers(uint16_t keycode, uint8_t force_modifiers) {
   uint8_t active_modifiers = get_mods();
 
