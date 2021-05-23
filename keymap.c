@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+------+------+------+------+------| MB1  |           |LCTRL |------+------+------+------+------+--------|
    * | LSHIFT |   Ü  |   Ö  |   Ä  |   P  |   Z  |      |           |      |   B  |   M  |  ,/– |  ./• |   J  | RSHIFT |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-   *   | LCTRL|      |      |      |      |                                       | NEO4 | MLEF | MDOW | MUP  | MRIG |
+   *   | LCTRL| LGUI |      |      |      |                                       | NEO4 | MLEF | MDOW | MUP  | MRIG |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
    *                                        |      |ctrl+s|       | ---- | FKEY |
@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,           DE_X,                     DE_V,                     DE_L,                     DE_C,             DE_W,             YELDIR_CTLSTAB,
     NEO2_LMOD3,       DE_U,                     DE_I,                     DE_A,                     DE_E,             DE_O,             /* --- */
     KC_LSHIFT,        DE_UDIA,                  DE_ODIA,                  DE_ADIA,                  DE_P,             DE_Z,             KC_MS_BTN1,
-    KC_LCTRL,         KC_NO,                    KC_NO,                    KC_NO,                    KC_NO,       /* --- */         /* --- */
+    KC_LCTRL,         KC_LGUI,                  KC_NO,                    KC_NO,                    KC_NO,       /* --- */         /* --- */
 
     // left hand side - thumb cluster
     /* --- */         KC_NO,            LCTL(DE_S),
