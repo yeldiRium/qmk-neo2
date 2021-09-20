@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "keymap_german.h"
+#include "sendstring_german.h"
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
@@ -38,7 +39,8 @@ enum custom_keycodes {
   NEO2_MINUS,
   NEO2_COMMA,
   NEO2_DOT,
-  NEO2_SHARP_S
+  NEO2_SHARP_S,
+  COMMUNISM
 };
 
 #define NEO2_LMOD4                   MO(NEO_4)
@@ -127,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *   | MWLF | MWDN | MWUP | MWRI | NEO4 |                                       | NEO4 | MLEF | MDOW | MUP  | MRIG |
    *   `----------------------------------'                                       `----------------------------------'
    *                                        ,-------------.       ,-------------.
-   *                                        | APP  |ctrl+s|       | ---- | FKEY |
+   *                                        | APP  |ctrl+s|       |  ☭   | FKEY |
    *                                 ,------|------|------|       |------+------+------.
    *                                 |      |      | AC   |       | AC   |      |      |
    *                                 | LGUI | LALT |------|       |------| ALTG |Space |
@@ -155,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* --- */         /* --- */         NEO2_RMOD4,       KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,
 
     // right hand side - thumb cluster
-    KC_NO,            MO(FKEYS),        /* --- */
+    COMMUNISM,        MO(FKEYS),        /* --- */
     YELDIR_AC,        /* --- */         /* --- */
     KC_RCTRL,         KC_RALT,          KC_SPACE
   ),
@@ -542,6 +544,12 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
     return false;
   } else {
     switch(keycode) {
+      case COMMUNISM:
+        SEND_STRING("https://www.youtube.com/watch?v=GK2GUxOnjDQ");
+        //SEND_STRING(SS_TAP(SS_LSFT(X_DOT)));
+        //SEND_STRING(SS_TAP(SS_LSFT(X_7)));
+        //SEND_STRING(SS_TAP(SS_LSFT(X_7)));
+        break;
       case NEO2_1:
         SEND_STRING(SS_TAP(X_1));
         break;
