@@ -12,8 +12,8 @@ static uint8_t capslock_state = 0;
 
 // bitmasks for modifier keys
 #define MODS_NONE   0
-#define MODS_SHIFT  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
-#define MODS_CTRL   (MOD_BIT(KC_LCTL)|MOD_BIT(KC_RCTRL))
+#define MODS_SHIFT  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT))
+#define MODS_CTRL   (MOD_BIT(KC_LCTL)|MOD_BIT(KC_RCTL))
 #define MODS_ALT    (MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
 #define MODS_GUI    (MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI))
 
@@ -112,6 +112,10 @@ enum custom_keycodes {
 #define NEO2_L3_EN_DASH              RALT(DE_MINS)               // –
 #define NEO2_L3_EM_DASH              RSA(DE_MINS)                // —
 
+// My own special things
+#define YELDIR_MOVETABLEFT           LCTL(LSFT(KC_PGDN))
+#define YELDIR_MOVETABRIGHT          LCTL(LSFT(KC_PGUP))
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* NEO_1: Basic layer
    *
@@ -139,25 +143,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO /* NOOP */, NEO2_1,                   NEO2_2,                   NEO2_3,                   NEO2_4,           NEO2_5,           KC_NO,
     KC_TAB,           DE_X,                     DE_V,                     DE_L,                     DE_C,             DE_W,             YELDIR_CTLSTAB,
     NEO2_LMOD3,       DE_U,                     DE_I,                     DE_A,                     DE_E,             DE_O,             /* --- */
-    KC_LSHIFT,        DE_UDIA,                  DE_ODIA,                  DE_ADIA,                  DE_P,             DE_Z,             KC_MS_BTN1,
+    KC_LSFT,          DE_UDIA,                  DE_ODIA,                  DE_ADIA,                  DE_P,             DE_Z,             KC_MS_BTN1,
     KC_MS_WH_LEFT,    KC_MS_WH_DOWN,            KC_MS_WH_UP,              KC_MS_WH_RIGHT,           NEO2_LMOD4,       /* --- */         /* --- */
 
     // left hand side - thumb cluster
     /* --- */         KC_APPLICATION,   LCTL(DE_S),
-    /* KC_BSPACE */   /* KC_DELETE */   YELDIR_AC,
-    KC_LGUI,          KC_LALT,          KC_LCTRL,
+    /* KC_BSPC */     /* KC_DELETE */   YELDIR_AC,
+    KC_LGUI,          KC_LALT,          KC_LCTL,
 
     // right hand side - main
     TO(DE_NORMAL),    NEO2_6,           NEO2_7,           NEO2_8,           NEO2_9,           NEO2_0,           NEO2_MINUS,
     YELDIR_CTLTAB,    DE_K,             DE_H,             DE_G,             DE_F,             DE_Q,             NEO2_SHARP_S,
     /* --- */         DE_S,             DE_N,             DE_R,             DE_T,             DE_D,             DE_Y,
-    KC_MS_BTN2,       DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSHIFT,
+    KC_MS_BTN2,       DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSFT,
     /* --- */         /* --- */         NEO2_RMOD4,       KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,
 
     // right hand side - thumb cluster
     KC_NO,            MO(FKEYS),        /* --- */
     YELDIR_AC,        /* --- */         /* --- */
-    KC_RCTRL,         KC_RALT,          KC_SPACE
+    KC_RCTL,          KC_RALT,          KC_SPACE
   ),
 
   /* NEO_3: Symbol layer
@@ -165,8 +169,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |  ----  | ---- | ---- | ---- |   ›  |   ‹  |      |           |      |   ¢ 	|   ¥  |   ‚  |   ‘  |   ’  |  ----  |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |  ----  |   …  |   _  |   [  |   ]  |   ^  |      |           |      |   !  |   <  |   >  |   =  |   &  |  ----  |
-   * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+   * |  ----  |   …  |   _  |   [  |   ]  |   ^  | MOVE |           | MOVE |   !  |   <  |   >  |   =  |   &  |  ----  |
+   * |--------+------+------+------+------+------| TAB<-|           | TAB->|------+------+------+------+------+--------|
    * |        |   \  |   /  |   {  |   }  |   *  |------|           |------|   ?  |   (  |   )  |   -  |   :  |   @    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
    * |        |   #  |   $  |   |  |   ~  |   `  |      |           |      |   +  |   %  |   "  |   '  |   ;  |        |
@@ -184,7 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NEO_3] = LAYOUT_ergodox(
     // left hand side - main
     KC_NO /* NOOP */,   KC_NO /* NOOP */,      KC_NO /* NOOP */,      KC_NO /* NOOP */,      NEO2_L3_RSAQUO,            NEO2_L3_LSAQUO,                _______,
-    KC_NO /* NOOP */,   NEO2_L3_ELLIPSIS,      NEO2_L3_UNDERSCORE,    NEO2_L3_LBRACKET,      NEO2_L3_RBRACKET,          NEO2_L3_CIRCUMFLEX,            _______,
+    KC_NO /* NOOP */,   NEO2_L3_ELLIPSIS,      NEO2_L3_UNDERSCORE,    NEO2_L3_LBRACKET,      NEO2_L3_RBRACKET,          NEO2_L3_CIRCUMFLEX,            YELDIR_MOVETABLEFT,
     _______,            NEO2_L3_BSLASH,        NEO2_L3_SLASH,         NEO2_L3_CLBRACKET,     NEO2_L3_CRBRACKET,         NEO2_L3_ASTERISK,              /* --- */
     _______,            NEO2_L3_HASH,          NEO2_L3_DOLLAR,        NEO2_L3_PIPE,          NEO2_L3_TILDE,             NEO2_L3_BACKTICK,              _______,
     _______,            _______,               _______,               _______,               _______,                   /* --- */                      /* --- */
@@ -196,7 +200,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // right hand side - main
     _______,            NEO2_L3_CENT,          NEO2_L3_YEN,           NEO2_L3_SBQUO,         NEO2_L3_LEFT_SINGLE_QUOTE,  NEO2_L3_RIGHT_SINGLE_QUOTE,   KC_NO,
-    _______,            NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            NEO2_L3_SMALL_LONG_S,
+    YELDIR_MOVETABRIGHT,NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            NEO2_L3_SMALL_LONG_S,
     /* --- */           NEO2_L3_QUESTIONMARK,  NEO2_L3_LPARENTHESES,  NEO2_L3_RPARENTHESES,  NEO2_L3_HYPHEN_MINUS,       NEO2_L3_COLON,                DE_AT,
     _______,            NEO2_L3_PLUS,          NEO2_L3_PERCENT,       NEO2_L3_DOUBLE_QUOTE,  NEO2_L3_SINGLE_QUOTE,       NEO2_L3_SEMICOLON,            _______,
     /* --- */           /* --- */              _______,               _______,               _______,                    _______,                      _______,
@@ -231,10 +235,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NEO_4] = LAYOUT_ergodox(
     // left hand side - main
     KC_NO /* NOOP */,   NEO2_L3_FEMININE_ORDINAL, NEO2_L3_MASCULINE_ORDINAL,KC_NO /* NOOP */,     NEO2_L3_MIDDLE_DOT, NEO2_L3_BRITISH_POUND, _______,
-    _______,            KC_PGUP,                  KC_BSPACE,                KC_UP,                KC_DELETE,          KC_PGDOWN,            _______,
-    _______,            KC_HOME,                  KC_LEFT,                  KC_DOWN,              KC_RIGHT,           KC_END,               /* --- */
-    _______,            KC_ESCAPE,                KC_TAB,                   KC_INSERT,            KC_ENTER,           KC_NO /* NOOP */,     _______,
-    _______,            _______,                  _______,                  _______,              _______,            /* --- */             /* --- */
+    _______,            KC_PGUP,                  KC_BSPC,                  KC_UP,                KC_DELETE,          KC_PGDN,               _______,
+    _______,            KC_HOME,                  KC_LEFT,                  KC_DOWN,              KC_RIGHT,           KC_END,                /* --- */
+    _______,            KC_ESCAPE,                KC_TAB,                   KC_INSERT,            KC_ENTER,           KC_NO /* NOOP */,      _______,
+    _______,            _______,                  _______,                  _______,              _______,            /* --- */              /* --- */
 
     // left hand side - thumb cluster
     /* --- */           _______,                  _______,
@@ -373,8 +377,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // left hand side - main
     KC_ESCAPE,        DE_1,         DE_2,       DE_3,       DE_4,       DE_5,       KC_ESCAPE,
     KC_TAB,           DE_Q,         DE_W,       DE_E,       DE_R,       DE_T,       KC_NO /* NOOP */,
-    KC_LSHIFT,        DE_A,         DE_S,       DE_D,       DE_F,       DE_G,       /* --- */
-    KC_LSHIFT,        DE_Y,         DE_X,       DE_C,       DE_V,       DE_B,       KC_NO /* NOOP */,
+    KC_LSFT,          DE_A,         DE_S,       DE_D,       DE_F,       DE_G,       /* --- */
+    KC_LSFT,          DE_Y,         DE_X,       DE_C,       DE_V,       DE_B,       KC_NO /* NOOP */,
     KC_LCTL,          KC_LGUI,      KC_LALT,    KC_NO,      MO(FKEYS),  /* --- */   /* --- */
 
     // left hand side - thumb cluster
@@ -386,13 +390,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TO(NEO_1),        DE_6,         DE_7,       DE_8,       DE_9,       DE_0,       DE_SS,
     KC_NO,            DE_Z,         DE_U,       DE_I,       DE_O,       DE_P,       DE_UDIA,
     /* --- */         DE_H,         DE_J,       DE_K,       DE_L,       DE_ODIA,    DE_ADIA,
-    KC_NO /* NOOP */, DE_N,         DE_M,       DE_COMM,    DE_DOT,     DE_MINS,    KC_RSHIFT,
+    KC_NO /* NOOP */, DE_N,         DE_M,       DE_COMM,    DE_DOT,     DE_MINS,    KC_RSFT,
     /* --- */         /* --- */     KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,   KC_RGUI,
 
     // right hand side - thumb cluster
-    KC_RALT,          KC_RCTRL,     /* --- */
+    KC_RALT,          KC_RCTL,      /* --- */
     KC_NO,            /* --- */     /* --- */
-    KC_BSPACE,        KC_ENTER,     KC_SPACE
+    KC_BSPC,          KC_ENTER,     KC_SPACE
   ),
 
   /* FKEYS: Function keys
@@ -448,7 +452,7 @@ void tap_with_modifiers(uint16_t keycode, uint8_t force_modifiers) {
   uint8_t active_modifiers = get_mods();
 
   if ((force_modifiers & MODS_SHIFT) && !(active_modifiers & MODS_SHIFT)) register_code(KC_LSFT);
-  if ((force_modifiers & MODS_CTRL) && !(active_modifiers & MODS_CTRL)) register_code(KC_LCTRL);
+  if ((force_modifiers & MODS_CTRL) && !(active_modifiers & MODS_CTRL)) register_code(KC_LCTL);
   if ((force_modifiers & MODS_ALT) && !(active_modifiers & MODS_ALT)) register_code(KC_LALT);
   if ((force_modifiers & MODS_GUI) && !(active_modifiers & MODS_GUI)) register_code(KC_LGUI);
 
@@ -456,7 +460,7 @@ void tap_with_modifiers(uint16_t keycode, uint8_t force_modifiers) {
   unregister_code(keycode);
 
   if ((force_modifiers & MODS_SHIFT) && !(active_modifiers & MODS_SHIFT)) unregister_code(KC_LSFT);
-  if ((force_modifiers & MODS_CTRL) && !(active_modifiers & MODS_CTRL)) unregister_code(KC_LCTRL);
+  if ((force_modifiers & MODS_CTRL) && !(active_modifiers & MODS_CTRL)) unregister_code(KC_LCTL);
   if ((force_modifiers & MODS_ALT) && !(active_modifiers & MODS_ALT)) unregister_code(KC_LALT);
   if ((force_modifiers & MODS_GUI) && !(active_modifiers & MODS_GUI)) unregister_code(KC_LGUI);
 }
@@ -608,27 +612,27 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
 // Runs for each key down or up event.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch(keycode) {
-    case KC_LSHIFT:
+    case KC_LSFT:
       if (record->event.pressed) {
-        capslock_state |= (MOD_BIT(KC_LSHIFT));
+        capslock_state |= (MOD_BIT(KC_LSFT));
       } else {
-        capslock_state &= ~(MOD_BIT(KC_LSHIFT));
+        capslock_state &= ~(MOD_BIT(KC_LSFT));
       }
       break;
-    case KC_RSHIFT:
+    case KC_RSFT:
       if (record->event.pressed) {
-        capslock_state |= MOD_BIT(KC_RSHIFT);
+        capslock_state |= MOD_BIT(KC_RSFT);
       } else {
-        capslock_state &= ~(MOD_BIT(KC_RSHIFT));
+        capslock_state &= ~(MOD_BIT(KC_RSFT));
       }
       break;
     case YELDIR_AC:
       if (record->event.pressed) {
         register_code(KC_LALT);
-        register_code(KC_LCTRL);
+        register_code(KC_LCTL);
       } else {
         unregister_code(KC_LALT);
-        unregister_code(KC_LCTRL);
+        unregister_code(KC_LCTL);
       }
       break;
     case NEO2_LMOD3:
@@ -647,10 +651,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   if ((capslock_state & MODS_SHIFT) == MODS_SHIFT) {
     // CAPSLOCK is currently active, disable it
-    if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
-      unregister_code(KC_LOCKING_CAPS);
+    if (host_keyboard_led_state().caps_lock) {
+      unregister_code(KC_LOCKING_CAPS_LOCK);
     } else {
-      register_code(KC_LOCKING_CAPS);
+      register_code(KC_LOCKING_CAPS_LOCK);
     }
     return false;
   }
