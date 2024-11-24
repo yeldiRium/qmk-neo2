@@ -57,16 +57,16 @@ enum custom_keycodes {
 #define NEO2_L3_SUPERSCRIPT_3        DE_SUP3                     // ³
 #define NEO2_L3_RSAQUO               RSA(DE_Y)                   // ›
 #define NEO2_L3_LSAQUO               RSA(DE_X)                   // ‹
-#define NEO2_L3_RAQUO                RALT(DE_Y)                  // »
-#define NEO2_L3_LAQUO                RALT(DE_X)                  // «
-#define NEO2_L3_CENT                 RALT(DE_C)                  // ¢
-#define NEO2_L3_YEN                  RSA(DE_Z)                   // ¥
-#define NEO2_L3_SBQUO                RSA(DE_V)                   // ‚
-#define NEO2_L3_LEFT_SINGLE_QUOTE    RSA(DE_B)                   // ‘
-#define NEO2_L3_RIGHT_SINGLE_QUOTE   RSA(DE_N)                   // ’
-#define NEO2_L3_LOW9_DBQUOTE         RALT(DE_V)                  // „
-#define NEO2_L3_LEFT_DBQUOTE         RALT(DE_B)                  // “
-#define NEO2_L3_RIGHT_DBQUOTE        RALT(DE_N)                  // ”
+#define NEO2_L3_RAQUO                RALT(DE_Y)                  // »  TODO: remove this
+#define NEO2_L3_LAQUO                RALT(DE_X)                  // «  TODO: remove this
+#define NEO2_L3_CENT                 RALT(DE_C)                  // ¢  TODO: remove this
+#define NEO2_L3_YEN                  RSA(DE_Z)                   // ¥  TODO: remove this
+#define NEO2_L3_SBQUO                RSA(DE_V)                   // ‚  TODO: remove this
+#define NEO2_L3_LEFT_SINGLE_QUOTE    RSA(DE_B)                   // ‘  TODO: remove this
+#define NEO2_L3_RIGHT_SINGLE_QUOTE   RSA(DE_N)                   // ’  TODO: remove this
+#define NEO2_L3_LOW9_DBQUOTE         RALT(DE_V)                  // „  TODO: remove this
+#define NEO2_L3_LEFT_DBQUOTE         RALT(DE_B)                  // “  TODO: remove this
+#define NEO2_L3_RIGHT_DBQUOTE        RALT(DE_N)                  // ”  TODO: remove this
 #define NEO2_L3_ELLIPSIS             RALT(DE_DOT)                // …
 #define NEO2_L3_UNDERSCORE           DE_UNDS                     // _
 #define NEO2_L3_LBRACKET             DE_LBRC                     // [
@@ -77,7 +77,7 @@ enum custom_keycodes {
 #define NEO2_L3_GREATERTHAN          DE_RABK                     // >
 #define NEO2_L3_EQUAL                DE_EQL                      // =
 #define NEO2_L3_AMPERSAND            DE_AMPR                     // &
-#define NEO2_L3_SMALL_LONG_S         RALT(DE_S)                  // ſ
+#define NEO2_L3_SMALL_LONG_S         RALT(DE_S)                  // ſ  TODO: remove this
 #define NEO2_L3_BSLASH               DE_BSLS                     // (backslash)
 #define NEO2_L3_SLASH                DE_SLSH                     // /
 #define NEO2_L3_CLBRACKET            DE_LCBR                     // {
@@ -100,17 +100,17 @@ enum custom_keycodes {
 #define NEO2_L3_SEMICOLON            DE_SCLN                     // ;
 
 // NEO_4 special characters
-#define NEO2_L3_FEMININE_ORDINAL     RSA(DE_F)                   // ª
-#define NEO2_L3_MASCULINE_ORDINAL    RSA(DE_M)                   // º
-#define NEO2_L3_NUMERO_SIGN          KC_NO                       // №
+#define NEO2_L3_FEMININE_ORDINAL     RSA(DE_F)                   // ª  TODO: remove this
+#define NEO2_L3_MASCULINE_ORDINAL    RSA(DE_M)                   // º  TODO: remove this
+#define NEO2_L3_NUMERO_SIGN          KC_NO                       // №  TODO: remove this
 #define NEO2_L3_MIDDLE_DOT           RALT(DE_COMM)               // ·
-#define NEO2_L3_BRITISH_POUND        RSA(DE_3)                   // £
-#define NEO2_L3_CURRENCY_SIGN        RSA(DE_4)                   // ¤
+#define NEO2_L3_BRITISH_POUND        RSA(DE_3)                   // £  TODO: remove this
+#define NEO2_L3_CURRENCY_SIGN        RSA(DE_4)                   // ¤  TODO: remove this
 #define NEO2_L3_INV_EXCLAMATION      RSA(DE_1)                   // ¡
 #define NEO2_L3_INV_QUESTIONMARK     RSA(DE_SS)                  // ¿
 #define NEO2_L3_DOLLAR               DE_DLR                      // $
-#define NEO2_L3_EN_DASH              RALT(DE_MINS)               // –
-#define NEO2_L3_EM_DASH              RSA(DE_MINS)                // —
+#define NEO2_L3_EN_DASH              RALT(DE_MINS)               // –  TODO: remove this
+#define NEO2_L3_EM_DASH              RSA(DE_MINS)                // —  TODO: remove this
 
 // My own special things
 #define YELDIR_MOVETABLEFT           LCTL(LSFT(KC_PGDN))
